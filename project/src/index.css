@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --white: hsl(0, 0%, 100%);
+  --light-pink: hsl(275, 100%, 97%);
+  --grayish-purple: hsl(292, 16%, 49%);
+  --dark-purple: hsl(292, 42%, 14%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 0 1rem;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background-color: var(--light-pink);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.bg-img {
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: url(./assets/images/background-pattern-desktop.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  z-index: -1;
+}
+
+.info-container {
+  background-color: var(--white);
+  max-width: 750px;
+  margin-inline: auto;
+  z-index: 10;
+  padding: 32px 24px;
+  border-radius: 16px;
+}
+
+.info-container .header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.info-container .header h1 {
+  font-size: 40px;
+}
+
+.faq-section:not(:last-child) {
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--light-pink);
+}
+
+.faq-question:hover {
+  cursor: pointer;
+  color: #ad28eb;
+}
+
+.faq-question-btn  {
+  border: none;
+  border-radius: 50%;
+}
+
+.faq-question-btn:hover {  
+  cursor: pointer;
+}
+
+

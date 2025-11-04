@@ -7,54 +7,50 @@ import { useState } from "react";
 function App() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const toggleInfo = (index: number) => {
-    console.log("Toggling index:", index, "Current openIndex:", openIndex);
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    
     <div className="container">
-      <div className="bg-img"/>
-        <div className="info-container"> 
-         
-          <figure className="header">
-            <img src={star} alt="image of star" />
-            <h1>FAQS</h1>
-          </figure>
-          {info.faqs.map(
-            (faq: { question: string; answer: string }, index: number) => (
-              <div key={index} className="faq-section">
-                <figure >
-                  <h2 className="faq-question">{faq.question}</h2>
-                  {/* Toggle button to show/hide answer */}
-                  <button className='faq-question-btn' onClick={() => toggleInfo(index)}>
-                    <img
-                      src={openIndex === index ? minus : plus}
-                      alt={
-                        openIndex === index ? "minus icon" : "plus icon"
-                      }
-                      aria-label={`${
-                        openIndex === index ? "minus" : "plus"
-                      }-icon ${index}`}
-                    />
-                  </button>
-                  {/* Only show answer if this FAQ is open */}
-                {openIndex === index && (
-                  <>
-                  {console.log("Rendering answer for index:", index)}
-                  <p className="faq-answer">{faq.answer}</p>
-                  </>
-                )}
-                </figure>
-                
+      <div className="bg-img" />
+      <div className="info-container">
+        <figure className="header">
+          <img src={star} alt="image of star" />
+          <h1>FAQS</h1>
+        </figure>
+        {info.faqs.map((faq, index) => (
+          <div key={index} className="faq-section">
+            <div className="faq-container">
+              {/* ROW: question + button */}
+              <div className="faq-row">
+                <span className="faq-question">{faq.question}</span>
+                <button
+                  className="faq-question-btn"
+                  onClick={() => toggleInfo(index)}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <img
+                    src={openIndex === index ? minus : plus}
+                    alt={openIndex === index ? "minus icon" : "plus icon"}
+                    width="20"
+                    height="20"
+                  />
+                </button>
               </div>
-            )
-          )}
-        </div>
-      
+
+              {/* ANSWER: always outside the .faq-row */}
+              {openIndex === index && (
+                <p id={`faq-answer-${index}`} className="faq-answer">
+                  {faq.answer}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    
-  )
+  );
 }
 
 export default App;
